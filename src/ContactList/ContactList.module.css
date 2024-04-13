@@ -1,0 +1,7 @@
+.list {
+  border: 1px solid lightblue;
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: 250px;
+  height: 100%;
+}
