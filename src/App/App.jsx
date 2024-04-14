@@ -1,9 +1,7 @@
 import { useState } from "react";
-// import { Formik } from "formik";
-// import ContactForm from "../ContactForm/ContactForm";
-// import * as Yup from "yup";
 import ContactList from "../ContactList/ContactList";
 import SearchBox from "../SearchBox/SearchBox";
+import ContactForm from "../ContactForm/ContactForm";
 
 function App() {
   const [items, setItems] = useState([
@@ -18,16 +16,23 @@ function App() {
   const handleInputValue = (event) => {
     setInputValue(event.target.value);
   };
-  const filterValues = () => {
-    return setItems(items.filter((item) => item.name === inputValue));
+
+  const filterValues = items.filter((item) =>
+    item.name.toLowerCase().includes(inputValue.toLowerCase())
+  );
+
+  const addContact = (newContact) => {
+    setItems((prevcontacts) => {
+      return [...prevcontacts, newContact];
+    });
   };
-  console.log(items.filter((item) => item.name === inputValue));
+
   return (
     <>
       <h1>Phonebook</h1>
-      {/* <ContactForm  /> */}
-      <SearchBox value={inputValue} onChange={handleInputValue} />
-      <ContactList items={items} filterValues={filterValues} />
+      <ContactForm onAdd={addContact} />
+      <SearchBox value={inputValue} onFilter={handleInputValue} />
+      <ContactList items={filterValues} />
     </>
   );
 }

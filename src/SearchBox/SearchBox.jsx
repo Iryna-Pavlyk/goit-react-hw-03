@@ -1,7 +1,7 @@
-const SearchBox = ({ inputValue, handleInputValue }) => {
+const SearchBox = ({ value, onFilter }) => {
   return (
     <div>
-      <input type="text" value={inputValue} onChange={handleInputValue} />
+      <input type="text" value={value} onChange={onFilter} />
     </div>
   );
 };
