@@ -6,10 +6,14 @@ import css from "./ContactForm.module.css";
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .trim()
-    .min(3, "To Short!")
-    .max(50, "To Long!")
+    .min(3, "Too Short!")
+    .max(50, "Too Long!")
     .required("Required!"),
-  number: Yup.string().trim().min(7, "To Short!").max(15).required("Required!"),
+  number: Yup.string()
+    .trim()
+    .min(7, "Too Short!")
+    .max(15)
+    .required("Required!"),
 });
 
 const ContactForm = ({ onAdd }) => {
