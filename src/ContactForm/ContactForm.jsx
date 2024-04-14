@@ -37,21 +37,23 @@ const ContactForm = ({ onAdd }) => {
         validationSchema={SignupSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <div>
+        <Form className={css.form}>
+          <div className={css.inputWrapper}>
             <label htmlFor={nameId}>Name</label>
             <Field
+              className={css.input}
               type="text"
               name="name"
               id={nameId}
-              placeholder="Iryna Pavlyk"
+              placeholder="Rosie Simpson"
             ></Field>
             <ErrorMessage className={css.err} name="name" component="span" />
           </div>
 
-          <div>
+          <div className={css.inputWrapper}>
             <label htmlFor={numberId}>Number</label>
             <Field
+              className={css.input}
               type="text"
               name="number"
               id={numberId}
@@ -60,7 +62,11 @@ const ContactForm = ({ onAdd }) => {
             <ErrorMessage className={css.err} name="number" component="span" />
           </div>
 
-          <button type="submit">Add contact</button>
+          <div className={css.btnWrapper}>
+            <button className={css.btn} type="submit">
+              Add contact
+            </button>
+          </div>
         </Form>
       </Formik>
     </div>

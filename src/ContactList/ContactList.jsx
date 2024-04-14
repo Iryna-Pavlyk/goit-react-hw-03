@@ -5,10 +5,10 @@ import css from "./ContactList.module.css";
 const ContactList = ({ items, onDelete }) => {
   return (
     <div>
-      <ul>
+      <ul className={css.list}>
         {items.map((item) => {
           return (
-            <li className={css.list} key={item.id}>
+            <li className={css.item} key={item.id}>
               <Contact item={item} onDelete={onDelete} />
             </li>
           );
