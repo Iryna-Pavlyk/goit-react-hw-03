@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { nanoid } from "nanoid";
 import css from "./ContactForm.module.css";
 
 const SignupSchema = Yup.object().shape({
@@ -11,15 +12,21 @@ const SignupSchema = Yup.object().shape({
   number: Yup.string().trim().min(7, "To Short!").max(15).required("Required!"),
 });
 
-const ContactForm = (onAdd) => {
+const ContactForm = ({ onAdd }) => {
+  const nameId = nanoid();
+  const numberId = nanoid();
+
   const values = {
-    id: "",
     name: "",
     number: "",
   };
 
   const handleSubmit = (values, actions) => {
-    onAdd(values);
+    onAdd({
+      id: nameId,
+      name: values.name,
+      number: values.number,
+    });
     actions.resetForm();
   };
 
@@ -32,22 +39,22 @@ const ContactForm = (onAdd) => {
       >
         <Form>
           <div>
-            <label htmlFor="1">Name</label>
+            <label htmlFor={nameId}>Name</label>
             <Field
               type="text"
               name="name"
-              id="1"
+              id={nameId}
               placeholder="Iryna Pavlyk"
             ></Field>
             <ErrorMessage className={css.err} name="name" component="span" />
           </div>
 
           <div>
-            <label htmlFor="2">Number</label>
+            <label htmlFor={numberId}>Number</label>
             <Field
               type="text"
               name="number"
-              id="2"
+              id={numberId}
               placeholder="111-11-11"
             ></Field>
             <ErrorMessage className={css.err} name="number" component="span" />
